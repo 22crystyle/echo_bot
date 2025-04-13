@@ -19,11 +19,12 @@ public class VkEventHandlerService {
 
     /**
      * Determines and processes the type of request
+     *
      * @param request to handle
      * @return <p>confirmation token if {@code request.type} is {@code confirmation}</p>
      * <p>send message to sender if {@code request.type} is {@code message_new} and return "ok"</p>
      * @see VkService
-     * */
+     */
     public String handleEvent(RootMessageRequest request) {
         return switch (request.type()) {
             case "confirmation" -> responseProperties.getConfirmation();

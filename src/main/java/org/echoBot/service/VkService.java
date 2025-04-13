@@ -1,6 +1,7 @@
 package org.echoBot.service;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.echoBot.config.ResponseProperties;
 import org.echoBot.dto.MessageMapping;
 import org.echoBot.dto.request.MessageRequest;
@@ -14,7 +15,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 
 @Service
-@Getter @AllArgsConstructor
+@Getter
+@AllArgsConstructor
 public class VkService {
     private final MessageMapping messageMapping;
     private final String vkApiUrl;

@@ -21,10 +21,11 @@ public class VkCallbackController {
 
     /**
      * Handle post request from VK Callback API
+     *
      * @param request VK Callback API request
      * @return each bot should return "ok" status code
      * @see VkEventHandlerService
-     * */
+     */
     @PostMapping("/")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<String> getMessage(@RequestBody RootMessageRequest request) {

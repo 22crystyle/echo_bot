@@ -24,6 +24,6 @@ public class MessageMapping {
                 properties.getToken(),
                 properties.getV(),
                 new Random().nextInt(Integer.MAX_VALUE)
-                );
+        );
     }
 }

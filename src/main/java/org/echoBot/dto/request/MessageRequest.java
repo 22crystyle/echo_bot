@@ -8,7 +8,7 @@ public record MessageRequest(
         int id,
         int version,
         int out,
-        ArrayList<Object>fwd_messages,
+        ArrayList<Object> fwd_messages,
         boolean important,
         boolean is_hidden,
         ArrayList<Object> attachments,
@@ -17,5 +17,5 @@ public record MessageRequest(
         int peer_id,
         int random_id
 ) {
-    
+
 }
