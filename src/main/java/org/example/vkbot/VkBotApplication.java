@@ -2,12 +2,14 @@ package org.example.vkbot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-public class VKbotApplication {
+@EnableAsync
+public class VkBotApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VKbotApplication.class, args);
+        SpringApplication.run(VkBotApplication.class, args);
     }
 
 }
