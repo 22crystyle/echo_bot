@@ -1,7 +1,10 @@
 package org.echoBot.config;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.bind.ConstructorBinding;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,9 +26,8 @@ import org.springframework.stereotype.Component;
  *
  * @see org.springframework.boot.context.properties.ConfigurationProperties
  */
-@Component
-@ConfigurationProperties(prefix = "vk")
-@Data
+@Component @ConfigurationProperties(prefix = "vk")
+@Data @RequiredArgsConstructor
 public class ResponseProperties {
     private String token;
     private String confirmation;

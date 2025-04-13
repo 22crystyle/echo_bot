@@ -6,7 +6,8 @@ import org.echoBot.dto.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Компонент для преобразования входящего запроса в формат ответа для VK API.
  * <p>
@@ -20,11 +21,11 @@ import java.util.Random;
  * @see MessageResponse
  */
 @Component
-public class MessageMapping {
+public class MessageMapper {
     private final ResponseProperties properties;
 
     @Autowired
-    public MessageMapping(ResponseProperties properties) {
+    public MessageMapper(ResponseProperties properties) {
         this.properties = properties;
     }
 
@@ -45,7 +46,7 @@ public class MessageMapping {
                 request.text(),
                 properties.getToken(),
                 properties.getV(),
-                new Random().nextInt(Integer.MAX_VALUE)
+                ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE)
         );
     }
 }
