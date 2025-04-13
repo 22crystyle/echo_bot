@@ -1,0 +1,14 @@
+services:
+  echo_bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: echo_bot
+    ports:
+      - "${PORT}:9040"
+    env_file:
+      - .env
+    #environment:
+    #  - PORT=${PORT}
+    #  - VK_TOKEN=${VK_TOKEN}
+    #  - VK_CONFIRMATION=${VK_CONFIRMATION}

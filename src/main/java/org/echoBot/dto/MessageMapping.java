@@ -1,8 +1,8 @@
-package org.example.vkbot.dto;
+package org.echoBot.dto;
 
-import org.example.vkbot.config.VkProperties;
-import org.example.vkbot.dto.request.MessageRequest;
-import org.example.vkbot.dto.response.MessageResponse;
+import org.echoBot.config.ResponseProperties;
+import org.echoBot.dto.request.MessageRequest;
+import org.echoBot.dto.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import java.util.Random;
 
 @Component
 public class MessageMapping {
-    private final VkProperties properties;
+    private final ResponseProperties properties;
 
     @Autowired
-    public MessageMapping(VkProperties properties) {
+    public MessageMapping(ResponseProperties properties) {
         this.properties = properties;
     }
 

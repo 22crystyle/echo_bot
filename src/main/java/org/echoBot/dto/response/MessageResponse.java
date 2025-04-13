@@ -1,4 +1,4 @@
-package org.example.vkbot.dto.response;
+package org.echoBot.dto.response;
 
 public record MessageResponse(
         int peer_id,

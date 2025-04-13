@@ -1,4 +1,4 @@
-package org.example.vkbot.dto.request;
+package org.echoBot.dto.request;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package org.example.vkbot.controller;
+package org.echoBot.controller;
 
-import org.example.vkbot.dto.request.RootMessageRequest;
-import org.example.vkbot.handler.VkEventHandlerService;
+import org.echoBot.dto.request.RootMessageRequest;
+import org.echoBot.handler.VkEventHandlerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,12 @@ public class VkCallbackController {
         this.eventHandlerService = eventHandlerService;
     }
 
+    /**
+     * Handle post request from VK Callback API
+     * @param request VK Callback API request
+     * @return each bot should return "ok" status code
+     * @see VkEventHandlerService
+     * */
     @PostMapping("/")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<String> getMessage(@RequestBody RootMessageRequest request) {

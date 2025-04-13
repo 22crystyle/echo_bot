@@ -1,10 +1,10 @@
-package org.example.vkbot.service;
+package org.echoBot.service;
 
 import lombok.*;
-import org.example.vkbot.config.VkProperties;
-import org.example.vkbot.dto.MessageMapping;
-import org.example.vkbot.dto.request.MessageRequest;
-import org.example.vkbot.dto.response.MessageResponse;
+import org.echoBot.config.ResponseProperties;
+import org.echoBot.dto.MessageMapping;
+import org.echoBot.dto.request.MessageRequest;
+import org.echoBot.dto.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
@@ -20,8 +20,8 @@ public class VkService {
     private final String vkApiUrl;
 
     @Autowired
-    public VkService(VkProperties vkProperties, MessageMapping messageMapping) {
-        this.vkApiUrl = vkProperties.getApiUrl();
+    public VkService(ResponseProperties responseProperties, MessageMapping messageMapping) {
+        this.vkApiUrl = responseProperties.getApiUrl();
         this.messageMapping = messageMapping;
     }
 

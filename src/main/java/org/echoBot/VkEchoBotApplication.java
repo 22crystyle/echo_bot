@@ -1,4 +1,4 @@
-package org.example.vkbot;
+package org.echoBot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-public class VkBotApplication {
+public class VkEchoBotApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VkBotApplication.class, args);
+        SpringApplication.run(VkEchoBotApplication.class, args);
     }
 
 }
