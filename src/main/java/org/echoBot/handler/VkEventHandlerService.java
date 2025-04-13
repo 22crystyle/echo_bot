@@ -1,11 +1,23 @@
 package org.echoBot.handler;
 
 import org.echoBot.config.ResponseProperties;
+import org.echoBot.dto.request.MessageRequest;
 import org.echoBot.dto.request.RootMessageRequest;
 import org.echoBot.service.VkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Сервис для обработки событий, поступающих через VK Callback API.
+ * <p>
+ * Данный сервис определяет тип входящего запроса и выполняет соответствующую логику:
+ * возвращает confirmation-токен при получении события типа "confirmation" или отправляет сообщение при получении "message_new".
+ * </p>
+ *
+ * @see VkService
+ * @see ResponseProperties
+ * @see RootMessageRequest
+ */
 @Service
 public class VkEventHandlerService {
     private final VkService vkService;
@@ -18,12 +30,17 @@ public class VkEventHandlerService {
     }
 
     /**
-     * Determines and processes the type of request
+     * Обрабатывает входящий запрос от VK Callback API.
+     * <p>
+     * Если тип запроса равен "confirmation", метод возвращает confirmation-токен,
+     * необходимый для подтверждения сервера VK.
+     * Если тип запроса равен "message_new", сервис вызывает отправку сообщения через {@link VkService#sendMessage(MessageRequest)}
+     * и возвращает строку "ok".
+     * Для остальных типов запросов также возвращается "ok".
+     * </p>
      *
-     * @param request to handle
-     * @return <p>confirmation token if {@code request.type} is {@code confirmation}</p>
-     * <p>send message to sender if {@code request.type} is {@code message_new} and return "ok"</p>
-     * @see VkService
+     * @param request объект запроса от VK, содержащий тип события и сопутствующую информацию
+     * @return строка ответа для VK Callback API, например, confirmation-токен или "ok"
      */
     public String handleEvent(RootMessageRequest request) {
         return switch (request.type()) {
