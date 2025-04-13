@@ -27,7 +27,8 @@ import org.springframework.util.MultiValueMap;
  * @see MessageResponse
  */
 @Slf4j
-@Service @Getter
+@Service
+@Getter
 public class VkService {
     private final MessageMapper messageMapper;
     private final RestClientConfig restClientConfig;

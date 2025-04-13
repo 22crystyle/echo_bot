@@ -1,11 +1,8 @@
 package org.echoBot.config;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
-import org.springframework.stereotype.Component;
 
 /**
  * Конфигурационный компонент для параметров VK API.
@@ -26,11 +23,19 @@ import org.springframework.stereotype.Component;
  *
  * @see org.springframework.boot.context.properties.ConfigurationProperties
  */
-@Component @ConfigurationProperties(prefix = "vk")
-@Data @RequiredArgsConstructor
+@ConfigurationProperties(prefix = "vk")
+@Getter
 public class ResponseProperties {
-    private String token;
-    private String confirmation;
-    private String apiUrl;
-    private String v;
+    private final String token;
+    private final String confirmation;
+    private final String apiUrl;
+    private final String v;
+
+    @ConstructorBinding
+    public ResponseProperties(String token, String confirmation, String apiUrl, String v) {
+        this.token = token;
+        this.confirmation = confirmation;
+        this.apiUrl = apiUrl;
+        this.v = v;
+    }
 }

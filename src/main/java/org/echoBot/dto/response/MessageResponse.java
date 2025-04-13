@@ -3,11 +3,11 @@ package org.echoBot.dto.response;
 /**
  * Record, представляющий параметры сообщения для отправки через VK API.
  *
- * @param peer_id   идентификатор получателя сообщения
- * @param text      текст сообщения
+ * @param peer_id      идентификатор получателя сообщения
+ * @param text         текст сообщения
  * @param access_token токен доступа для VK API
- * @param v         версия API VK
- * @param random_id случайное число для уникальной идентификации запроса
+ * @param v            версия API VK
+ * @param random_id    случайное число для уникальной идентификации запроса
  */
 public record MessageResponse(
         int peer_id,
