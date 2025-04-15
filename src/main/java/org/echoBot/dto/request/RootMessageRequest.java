@@ -8,4 +8,14 @@ public record RootMessageRequest(
         MessageObject object
 
 ) {
+    @Override
+    public String toString() {
+        return "RootMessageRequest{" +
+                "group_id=" + group_id +
+                ", type='" + type + '\'' +
+                ", event_id='" + event_id + '\'' +
+                ", v='" + v + '\'' +
+                ", object=" + object +
+                '}';
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding;
  * <p>
  * Класс {@code ResponseProperties} используется для маппинга настроек VK API, указанных в
  * application.properties с префиксом <code>vk</code>. Он содержит параметры,
- * необходимые для аутентификации и взаимодействия с VK API, такие как токен доступа, токен подтверждения, URL API
+ * необходимые для аутентификации и взаимодействия с VK API, такие, как токен доступа, токен подтверждения, URL API
  * и версия API.
  * </p>
  *
@@ -17,11 +17,11 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding;
  * <pre>
  *     vk.token=your_access_token
  *     vk.confirmation=your_confirmation_token
- *     vk.apiUrl=https://api.vk.com/method/messages.send
+ *     vk.apiUrl=<a href="https://api.vk.com/method/messages.send">...</a>
  *     vk.v=5.199
  * </pre>
  *
- * @see org.springframework.boot.context.properties.ConfigurationProperties
+ * @see ConfigurationProperties
  */
 @ConfigurationProperties(prefix = "vk")
 @Getter

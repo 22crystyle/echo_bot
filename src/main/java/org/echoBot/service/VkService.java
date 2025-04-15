@@ -2,41 +2,26 @@ package org.echoBot.service;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.echoBot.config.ResponseProperties;
-import org.echoBot.config.RestClientConfig;
 import org.echoBot.dto.MessageMapper;
 import org.echoBot.dto.request.MessageRequest;
 import org.echoBot.dto.response.MessageResponse;
+import org.echoBot.rest.RestTransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-/**
- * Сервис для отправки сообщений через VK API.
- * <p>
- * Класс отвечает за формирование и отправку HTTP-запроса к VK API для передачи сообщений,
- * используя настройки, заданные в {@link ResponseProperties} и преобразование запроса через {@link MessageMapper}.
- * </p>
- *
- * @see MessageMapper
- * @see ResponseProperties
- * @see MessageRequest
- * @see MessageResponse
- */
 @Slf4j
 @Service
 @Getter
 public class VkService {
     private final MessageMapper messageMapper;
-    private final RestClientConfig restClientConfig;
+    private final RestTransportClient rest;
 
     @Autowired
-    public VkService(MessageMapper messageMapper, RestClientConfig restClientConfig) {
+    public VkService(MessageMapper messageMapper, RestTransportClient restTransportClient) {
         this.messageMapper = messageMapper;
-        this.restClientConfig = restClientConfig;
+        this.rest = restTransportClient;
     }
 
     /**
@@ -52,26 +37,11 @@ public class VkService {
      */
     @Async
     public void sendMessage(MessageRequest messageRequest) {
+        MessageResponse message = messageMapper.toResponse(messageRequest);
+        MultiValueMap<String, String> params = message.toMultiValueParams();
+        log.info("Отправка сообщения с параметрами: {}", params);
         try {
-            MessageResponse message = messageMapper.toResponse(messageRequest);
-
-            MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-            params.add("peer_id", String.valueOf(message.peer_id()));
-            params.add("message", "Вы сказали: " + message.text());
-            params.add("access_token", message.access_token());
-            params.add("v", message.v());
-            params.add("random_id", String.valueOf(message.random_id()));
-
-            log.info("Отправка сообщения с параметрами: {}", params);
-
-            String response = restClientConfig.createRestClient().post()
-                    .body(params)
-                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                    .retrieve()
-                    .body(String.class);
-
-            System.out.println(response);
-
+            String response = rest.post("messages.send", params);
             log.info("Ответ VK: {}", response);
         } catch (Exception e) {
             log.error("Ошибка отправки сообщения в VK API", e);

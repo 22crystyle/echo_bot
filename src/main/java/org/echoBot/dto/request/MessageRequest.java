@@ -1,6 +1,6 @@
 package org.echoBot.dto.request;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public record MessageRequest(
         int date,
@@ -8,10 +8,10 @@ public record MessageRequest(
         int id,
         int version,
         int out,
-        ArrayList<Object> fwd_messages,
+        List<Object> fwd_messages,
         boolean important,
         boolean is_hidden,
-        ArrayList<Object> attachments,
+        List<Object> attachments,
         int conversation_message_id,
         String text,
         int peer_id,

@@ -16,6 +16,10 @@ public class RestClientConfig {
 
     @Bean
     public RestClient createRestClient() {
-        return RestClient.create(responseProperties.getApiUrl());
+        String baseUrl = responseProperties.getApiUrl();
+        if (!baseUrl.endsWith("/")) {
+            baseUrl += "/";
+        }
+        return RestClient.create(baseUrl);
     }
 }

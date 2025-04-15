@@ -1,9 +1,9 @@
 package org.echoBot.dto.request;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public record ClientInfoRequest(
-        ArrayList<String> button_actions,
+        List<String> button_actions,
         boolean keyboard,
         boolean inline_keyboard,
         boolean carousel,

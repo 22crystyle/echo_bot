@@ -1,33 +1,26 @@
 package org.echoBot.rest;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 
-import java.util.Map;
-
+@Slf4j
+@Component
 public class RestTransportClient implements TransportClient {
     private final RestClient restClient;
     private final MediaType mediaType = MediaType.APPLICATION_FORM_URLENCODED;
 
-    public RestTransportClient() {
-        this.restClient = RestClient.create("https://api.vk.com/method/messages.send");
+    @Autowired
+    public RestTransportClient(RestClient restClient) {
+        this.restClient = restClient;
     }
 
-
-    // TODO: избежать получения параметров в незашифрованном виде
     @Override
-    public void post(String url, Map<String, String> params) {
-        String responseBody = restClient.post().uri(url)
-                .body(params)
-                .contentType(mediaType)
-                .retrieve()
-                .body(String.class);
-    }
-
-
-    @Override
-    public void post(String url, Map<String, String> params, MediaType mediaType) {
-        restClient.post()
+    public String post(String url, MultiValueMap<String, String> params) {
+        return restClient.post()
                 .uri(url)
                 .body(params)
                 .contentType(mediaType)
