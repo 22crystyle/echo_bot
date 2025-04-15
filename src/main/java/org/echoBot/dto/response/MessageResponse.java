@@ -15,7 +15,7 @@ public record MessageResponse(
         String access_token,
         String v,
         int random_id
-) {
+) implements IResponseWithBody {
     /**
      * Фабричный метод для создания экземпляра {@code MessageResponse}.
      *
@@ -28,5 +28,21 @@ public record MessageResponse(
      */
     public static MessageResponse of(int peer_id, String message, String access_token, String v, int random_id) {
         return new MessageResponse(peer_id, message, access_token, v, random_id);
+    }
+
+    @Override
+    public String getResponseBody() {
+        return "MessageResponse{" +
+                "peer_id=" + peer_id +
+                ", text='" + text + '\'' +
+                ", access_token='" + access_token + '\'' +
+                ", v='" + v + '\'' +
+                ", random_id=" + random_id +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return getResponseBody();
     }
 }

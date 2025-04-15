@@ -64,11 +64,13 @@ public class VkService {
 
             log.info("Отправка сообщения с параметрами: {}", params);
 
-            String response = restClientConfig.restClient().post()
+            String response = restClientConfig.createRestClient().post()
                     .body(params)
                     .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                     .retrieve()
                     .body(String.class);
+
+            System.out.println(response);
 
             log.info("Ответ VK: {}", response);
         } catch (Exception e) {

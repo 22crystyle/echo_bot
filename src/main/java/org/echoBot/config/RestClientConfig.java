@@ -15,7 +15,7 @@ public class RestClientConfig {
     }
 
     @Bean
-    public RestClient restClient() {
+    public RestClient createRestClient() {
         return RestClient.create(responseProperties.getApiUrl());
     }
 }
